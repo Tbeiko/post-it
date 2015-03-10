@@ -1,26 +1,3 @@
-<h4>Pure HTML Form</h4>
-<form action='/posts' method='POST'>
-  Title: <input type='text' name ='title'>
-  <br/>
-  <input type='submit' class='btn btn-primary'>
-</form>
+<h4>Create a Post</h4>
 
-<h4>Rails form helper</h4>
-<%= form_tag '/posts' do %>
-  <%= label_tag :title %>
-  <%= text_field_tag :title %>
-  <br/>
-  <%= submit_tag "Create Post", class: "btn btn-primary" %>
-<% end %>
-
-<h4>Rails model-backed form helpers</h4>
-
-<%= form_for @post do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <br/>
-  <%= f.label :url %>
-  <%= f.text_field :url %>
-  <br/>
-  <%= f.submit "Create Post", class: "btn btn-primary" %>
-<% end %>
+<%= render 'form' %>
