@@ -1,0 +1,18 @@
+<% if @category.errors.any? %>
+  <div class='alert alert-error'> 
+    <h5>There were some errors:</h5>
+    <ul>
+      <% @category.errors.full_messages.each do | message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @category do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br/>
+  <%= f.submit(@category.new_record? ? "Create category" : 'Update category', class: "btn btn-primary") %>
+<% end %>
+

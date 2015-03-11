@@ -17,6 +17,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+    @post.creator = User.first # Remove this when user authentification is set up
 
     if @post.save
       flash[:notice] = "Your post was created."
@@ -32,7 +33,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       flash[:notice] = "The post was updated successfully."
-      redirect_to posts_path
+      redirect_to post_path(@post)
     else
       render :edit
     end
@@ -40,7 +41,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit!
+      params.require(:post).permit(:title, :url, :description, :user_id)
     end
 
     def set_post

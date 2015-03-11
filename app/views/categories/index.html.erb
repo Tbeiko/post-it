@@ -1,0 +1,10 @@
+<%= render 'shared/content_title', title: 'Categories' %>
+
+<div class = 'well'>
+  <p><%= link_to 'Add new', new_category_path %></p>
+  <% @categories.each do |category| %>
+    <%= category.name %>
+    (<%= link_to 'edit', edit_category_path(category) %>)
+    <br/>
+  <% end %>
+</div>
