@@ -13,9 +13,23 @@
 </p>
 <hr/>
 
+<%= link_to 'Return to index', posts_path %>
+
+<%= render 'shared/errors', entry: @comment %>
+
 <h5>Create a comment:</h5>
 <%= form_for [@post, @comment] do |f| %>
   <%= f.text_area :body %>
   <br/>
   <%= f.submit "Create Comment", class: 'btn btn-primary' %>
 <% end %>
+
+<h5>Comments</h5>
+
+<% @post.comments.each do |comment| %>
+  <div class='well'>
+    <p><%= comment.body %></p>
+    <small>posted by: <%= comment.creator.username%> at <%= comment.created_at %></small>
+  </div>
+<% end %>
+

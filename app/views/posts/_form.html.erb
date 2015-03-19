@@ -10,8 +10,32 @@
   <%= f.label :description %>
   <%= f.text_area :description, rows: 5 %>
   <br/>
+
+  <select name='post[category_ids][]' multiple='multiple'>
+    <option value='1'>O1</option>
+    <option value='2'>O2</option>
+  </select>
+
+  <br/>
   <%= f.submit(@post.new_record? ? "Create Post" : 'Update Post', class: "btn btn-primary") %>
 <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

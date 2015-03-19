@@ -1,6 +1,6 @@
 <% if entry.errors.any? %>
   <div class='alert alert-error'> 
-    <h5>There were some errors:</h5>
+    <h5>Something isn't right:</h5>
     <ul>
       <% entry.errors.full_messages.each do | message| %>
         <li><%= message %></li>
