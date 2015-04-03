@@ -5,7 +5,7 @@
     <h4><%= link_to post.title, fix_url(post.url)%></h4> <!-- This is not working -->
     <p><%= post.description %></p>
     <p>
-      <span class='quiet'>posted by</span> <%= post.creator.username %> 
+      <span class='quiet'>posted by</span> <%= link_to post.creator.username, '' %> 
       <small>at <%= post.created_at %></small>
     </p>
     <small>

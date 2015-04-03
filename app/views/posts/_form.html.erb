@@ -11,10 +11,12 @@
   <%= f.text_area :description, rows: 5 %>
   <br/>
 
-  <select name='post[category_ids][]' multiple='multiple'>
-    <option value='1'>O1</option>
-    <option value='2'>O2</option>
-  </select>
+  <div class='control-group'>
+    <%= f.label 'Categories' %>
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |cb| %>
+      <% cb.label(class: "checkbox inline") {cb.check_box(class: "checkbox") + cb.text} %>
+    <% end %>
+  </div>
 
   <br/>
   <%= f.submit(@post.new_record? ? "Create Post" : 'Update Post', class: "btn btn-primary") %>
