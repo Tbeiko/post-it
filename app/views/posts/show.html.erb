@@ -18,17 +18,19 @@
 
 <h5>Create a comment:</h5>
 <%= form_for [@post, @comment] do |f| %>
-  <%= f.text_area :body %>
+  <%= f.text_area :body, rows: 3, class: "span5" %>
   <br/>
   <%= f.submit "Add comment", class: 'btn btn-primary' %>
 <% end %>
 
-<h5>Comments</h5>
+<% unless @post.comments.count == 0 %>
+    <h5>Comments</h5>
 
-<% @post.comments.each do |comment| %>
-  <div class='well'>
-    <em>"<%= comment.body %>"</em></br>
-    s<small>posted by: <%= link_to comment.creator.username, ''%> at <%= comment.created_at %></small>
-  </div>
+  <% @post.comments.each do |comment| %>
+    <div class='well'>
+      <em>"<%= comment.body %>"</em></br>
+      <small>posted by: <%= link_to comment.creator.username, ''%> on <%= display_datetime(comment.created_at) %></small>
+    </div>
+  <% end %>
 <% end %>
 
