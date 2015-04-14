@@ -12,9 +12,11 @@
     <span>
       <%= link_to("#{post.comments.count} comments", post_path(post)) %>
     </span>
-    <span>
-      (<%= link_to 'edit', edit_post_path(post) %>)
-    </span>
+    <% if logged_in? && post.creator == current_user %>
+      <span>
+        (<%= link_to 'edit', edit_post_path(post) %>)
+      </span>
+    <% end %>
     </small>
   </div>
 </div>
