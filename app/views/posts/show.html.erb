@@ -33,7 +33,7 @@
   <% @post.comments.each do |comment| %>
     <div class='well'>
       <em>"<%= comment.body %>"</em></br>
-      <small>posted by: <%= link_to comment.creator.username, ''%> on <%= display_datetime(comment.created_at) %></small>
+      <small>posted by: <%= link_to comment.creator.username, user_path(comment.creator.id)%> on <%= display_datetime(comment.created_at) %></small>
     </div>
   <% end %>
 <% end %>

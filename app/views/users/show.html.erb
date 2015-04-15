@@ -1,0 +1,30 @@
+<% if @user == current_user %>
+  <% @user_to_display = "Your Profile" %>
+<% else %>
+  <% @user_to_display = "#{@user.username}'s Profile"  %>
+<% end %>
+
+<p class="lead">
+  <%= @user_to_display %>
+<% if logged_in? && @user_to_display == "Your Profile" %>
+ <small class='quiet pull-right'> [<%= link_to 'Edit Your Profile', edit_user_path(@user) %>] </small>
+<% end %>
+  <hr/>
+</p>
+
+<%= render 'shared/content_title', title: "Posts" %>
+
+<div >
+  <% @user.posts.each do |post| %>
+    <%= render 'posts/post', post: post %>
+  <% end %>
+</div>
+
+<%= render 'shared/content_title', title: "Comments" %>
+
+  <% @user.comments.each do |comment| %>
+    <div class='well'>
+      <em>"<%= comment.body %>"</em></br>
+      <small>posted by: <%= link_to comment.creator.username, user_path(@user)%> on <%= display_datetime(comment.created_at) %></small>
+    </div>
+  <% end %>
