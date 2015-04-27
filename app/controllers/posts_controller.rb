@@ -18,7 +18,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.creator = current_user # Remove this when user authentification is set up
+    @post.creator = current_user 
 
     if @post.save
       flash[:notice] = "Your post was created."

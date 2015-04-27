@@ -1,15 +1,9 @@
 class SessionsController < ApplicationController
 
   def new
-
   end
 
   def create
-    # ex user.authenticate('password')
-    # 1. get user obj
-    # 2. see if pw matches (authenticate method)
-    # 3. if so, login
-    # 4. if not, error message
 
     user = User.find_by(username: params[:username])
 
