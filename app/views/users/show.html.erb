@@ -1,30 +1,42 @@
 <% if @user == current_user %>
-  <% @user_to_display = "Your Profile" %>
+  <% @your_or_username = "Your" %>
 <% else %>
-  <% @user_to_display = "#{@user.username}'s Profile"  %>
+  <% @your_or_username = "#{@user.username}'s"  %>
 <% end %>
 
 <p class="lead">
-  <%= @user_to_display %>
-<% if logged_in? && @user_to_display == "Your Profile" %>
+  <%= @your_or_username %> Profile
+<% if logged_in? && @your_or_username == "Your" %>
  <small class='quiet pull-right'> [<%= link_to 'Edit Your Profile', edit_user_path(@user) %>] </small>
 <% end %>
   <hr/>
 </p>
 
-<%= render 'shared/content_title', title: "Posts" %>
+<div class='well'>
+  <dl class='dl-horizontal'>
+    <dt>Username:</dt>
+    <dd><%= @user.username%></dd>
 
-<div >
-  <% @user.posts.each do |post| %>
-    <%= render 'posts/post', post: post %>
-  <% end %>
+  </dl>
 </div>
 
-<%= render 'shared/content_title', title: "Comments" %>
+<h5><%= @your_or_username%> activity</h5>
 
-  <% @user.comments.each do |comment| %>
-    <div class='well'>
-      <em>"<%= comment.body %>"</em></br>
-      <small>posted by: <%= link_to comment.creator.username, user_path(@user)%> on <%= display_datetime(comment.created_at) %></small>
-    </div>
-  <% end %>
+<ul class='nav nav-tabs'>
+  <li class='<%= 'active' if params[:tab].nil? %>' >
+    <%= link_to "Posts (#{@user.posts.size})", user_path(@user) %>
+  </li>
+  <li class='<%= 'active' if params[:tab] == 'comments' %>'>
+    <%= link_to "Comments (#{@user.comments.size})", user_path(@user, tab: 'comments') %>
+  </li>
+</ul>
+
+<% if params[:tab].nil? %>
+  <div >
+    <% @user.posts.each do |post| %>
+      <%= render 'posts/post', post: post %>
+    <% end %>
+  </div>
+<% elsif params[:tab] == 'comments' %>
+  <%= render 'posts/comments', user_or_post: @user %>
+<% end %>

@@ -1,0 +1,9 @@
+<% user_or_post.comments.each do |comment| %>
+  <div class='well'>
+    <em>"<%= comment.body %>"</em></br>
+    <% if user_or_post == @user %>
+      <small> on <%= link_to comment.post.title, post_path(comment.post) %></small>
+    <% end %>
+    <small>posted by: <%= link_to comment.creator.username, user_path(comment.creator)%> on <%= display_datetime(comment.created_at) %></small>
+  </div> 
+<% end %>
