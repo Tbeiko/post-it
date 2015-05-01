@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
   # Set up an instance variable for action (or redirect based on some condition)
-  before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :vote]
   before_action :require_user, except: [:index, :show]
 
 
   def index
-    @posts = Post.all
+    @posts = Post.all.sort_by{|x| x.total_votes}.reverse
   end
 
   def show
@@ -38,6 +38,17 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def vote
+    @vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
+
+    if @vote.save
+      flash[:notice] = "Your vote was counted."
+    else
+      flash[:error] = "You've already voted on '#{@post.title}'."
+    end
+    redirect_to :back
   end
 
   private
