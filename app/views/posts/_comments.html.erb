@@ -1,9 +1,25 @@
 <% user_or_post.comments.each do |comment| %>
-  <div class='well'>
+    <div class='span0 well text-center comment_votes'>
+      <% if logged_in? %> 
+        <%= link_to vote_comment_post_path(comment, vote: true), method: 'post' do %>
+          <i class='icon-arrow-up'></i>
+        <% end %></br>
+      <% end %>
+    <%= comment.total_votes %> Votes</br>
+      <% if logged_in? %> 
+        <%= link_to vote_comment_post_path(comment, vote: false), method: 'post' do %>
+          <i class='icon-arrow-down'></i>
+        <% end %></br>
+      <% end %>
+    </div>
+  </br>
+  
+  <div class='well span10 pull-right'>
     <em>"<%= comment.body %>"</em></br>
     <% if user_or_post == @user %>
       <small> on <%= link_to comment.post.title, post_path(comment.post) %></small>
     <% end %>
     <small>posted by: <%= link_to comment.creator.username, user_path(comment.creator)%> on <%= display_datetime(comment.created_at) %></small>
-  </div> 
+  </div>
+</br>
 <% end %>
