@@ -1,4 +1,4 @@
-PostitTemplate::Application.routes.draw do
+ PostitTemplate::Application.routes.draw do
   root to: 'posts#index'
 
   get 'register', to: 'users#new'
@@ -11,10 +11,11 @@ PostitTemplate::Application.routes.draw do
       post :vote
     end
 
-    resources :comments, only: [:create]
+    resources :comments, only: [:create] do
       member do
-        post :vote_comment
+        post :vote
       end 
+    end
 
   end
 

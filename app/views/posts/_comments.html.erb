@@ -1,25 +1,23 @@
-<% user_or_post.comments.each do |comment| %>
-    <div class='span0 well text-center comment_votes'>
-      <% if logged_in? %> 
-        <%= link_to vote_comment_post_path(comment, vote: true), method: 'post' do %>
-          <i class='icon-arrow-up'></i>
-        <% end %></br>
-      <% end %>
+<div class='row'>
+  <div class='span0 well text-center'>
+    <% if logged_in? %> 
+      <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post' do %>
+        <i class='icon-arrow-up'></i>
+      <% end %><br/>
+    <% end %>
     <%= comment.total_votes %> Votes</br>
-      <% if logged_in? %> 
-        <%= link_to vote_comment_post_path(comment, vote: false), method: 'post' do %>
-          <i class='icon-arrow-down'></i>
-        <% end %></br>
-      <% end %>
-    </div>
-  </br>
+    <% if logged_in? %> 
+      <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post' do %>
+        <i class='icon-arrow-down'></i>
+      <% end %></br>
+    <% end %>
+  </div>
   
-  <div class='well span10 pull-right'>
+  <div class='well span8'>
     <em>"<%= comment.body %>"</em></br>
-    <% if user_or_post == @user %>
+    <% if @user %>
       <small> on <%= link_to comment.post.title, post_path(comment.post) %></small>
     <% end %>
     <small>posted by: <%= link_to comment.creator.username, user_path(comment.creator)%> on <%= display_datetime(comment.created_at) %></small>
   </div>
-</br>
-<% end %>
+</div>
