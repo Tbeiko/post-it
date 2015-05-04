@@ -43,12 +43,17 @@ class PostsController < ApplicationController
   def vote
     @vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
 
+    respond_to do |format|
+      format.html 
+      format.js
+    end
+
     if @vote.save
       flash[:notice] = "Your vote was counted."
-    else
+      else
       flash[:error] = "You've already voted on '#{@post.title}'."
-    end
     redirect_to :back
+    end
   end
 
    
