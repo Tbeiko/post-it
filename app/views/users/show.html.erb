@@ -15,8 +15,9 @@
 <div class='well'>
   <dl class='dl-horizontal'>
     <dt>Username:</dt>
-    <dd><%= @user.username%></dd>
-
+    <dd><%= @user.username %></dd>
+    <dt>Time zone:</dt>
+    <dd><%= @user.time_zone %></dd>
   </dl>
 </div>
 
@@ -39,6 +40,6 @@
   </div>
 <% elsif params[:tab] == 'comments' %>
   <% @user.comments.each do |comment| %>
-    <%= render 'posts/comments', comment: comment %>
+    <%= render 'comments/comments', comment: comment %>
   <% end %>
 <% end %>

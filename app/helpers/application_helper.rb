@@ -8,7 +8,12 @@ module ApplicationHelper
   end
 
   def display_datetime(datetime)
+    if logged_in? && !current_user.time_zone.blank?
+      datetime = datetime.in_time_zone(current_user.time_zone)
+    else
     datetime.strftime("%m/%d/%Y at %l:%M%P %Z")
+    end
+
   end
 
 end

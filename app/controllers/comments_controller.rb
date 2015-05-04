@@ -3,7 +3,7 @@
   before_action :set_comment, only: :vote
 
   def create
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(slug: params[:post_id])
     @comment = @post.comments.build(params.require(:comment).permit(:body))
     @comment.creator = current_user
 
@@ -18,12 +18,19 @@
 
   def vote
     @vote = Vote.create(voteable: @comment, creator: current_user, vote: params[:vote])
-    if @vote.save
-      flash[:notice] = "Your vote was counted."
-    else
-      flash[:error] = "You've already voted on this comment."
+    
+    respond_to do |format|
+      format.html do
+        if @vote.save
+          flash[:notice] = "Your vote was counted."
+        else
+          flash[:error] = "You've already voted on this comment."
+        end
+        redirect_to :back
+      end
+
+      format.js 
     end
-    redirect_to :back
   end
 
   private
