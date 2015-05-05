@@ -29,7 +29,7 @@
 
 <% unless @post.comments.count == 0 %>
   <h5>Comments</h5>
-  <% @post.comments.each do |comment| %>
+  <% @post.reload.comments.each do |comment| %>
     <%= render 'comments/comments', comment: comment %>
   <% end %>
 <% end %>
