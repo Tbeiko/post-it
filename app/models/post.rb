@@ -28,7 +28,7 @@ class Post < ActiveRecord::Base
   end
 
   def generate_slug
-    the_slug = self.to_slug(self.title)
+    the_slug = to_slug(title)
     post = Post.find_by slug: the_slug
     count = 2
       while post && post !=self
@@ -51,7 +51,7 @@ class Post < ActiveRecord::Base
     str = name.strip
     str.gsub! /\s*[^A-Za-z0-9]\s*/, '-'
     str.gsub! /-+/, "-"
-    str
+    str.downcase
   end
 
 end 
