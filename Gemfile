@@ -14,6 +14,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '~> 3.0.0'
 
+gem 'voteable_tim_beiko', path: '/Users/tim/documents/code/voteable-gem'
+
 group :doc do
   gem 'sdoc', require: false
 end
