@@ -29,6 +29,8 @@
       <span>
         (<%= link_to 'edit', edit_post_path(post) %>)
       </span>
+    <% elsif logged_in? && current_user.admin? %>
+      (<%= link_to 'edit', edit_post_path(post) %>)
     <% end %>
     </small>
   </div>

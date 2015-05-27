@@ -2,6 +2,8 @@
   <%= link_to 'Return to index', posts_path %>
   <% if logged_in? && @post.creator == current_user %>
     [<%= link_to 'edit this post', edit_post_path(@post) %>]
+  <% elsif logged_in? && current_user.admin? %>
+    [<%= link_to 'edit this post', edit_post_path(@post) %>]
   <% end %>
 </p>
 
