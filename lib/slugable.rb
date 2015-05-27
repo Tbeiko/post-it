@@ -33,7 +33,8 @@ module Slugable
   def to_slug(name)
     str = name.strip
     str.gsub! /\s*[^A-Za-z0-9]\s*/, '-'
-    str.gsub! /-+/, "-"
+    str.gsub! /-+/, '-'
+    str.gsub! /^-+|-+$/, ''
     str.downcase
   end
 
