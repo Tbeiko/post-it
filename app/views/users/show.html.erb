@@ -16,8 +16,18 @@
   <dl class='dl-horizontal'>
     <dt>Username:</dt>
     <dd><%= @user.username %></dd>
-    <dt>Time zone:</dt>
-    <dd><%= @user.time_zone %></dd>
+    <% unless @user.time_zone.blank? %>
+      <dt>Time zone:</dt>
+      <dd><%= @user.time_zone %></dd>
+    <% end %>
+    <% unless @user.phone.blank? %>
+      <dt>Phone:</dt>
+      <dd><%= @user.phone %></dd>
+    <% end %>
+    <% unless @user.role.blank? %>
+      <dt>Role:</dt>
+      <dd><%= @user.role %></dd>
+    <% end %>
   </dl>
 </div>
 
