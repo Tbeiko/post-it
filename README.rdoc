@@ -1,16 +1,9 @@
-== Getting Started
+This is the reddit-like "Post-it" application project for GoTealeaf's second course.
 
-1. Make sure you have rails version 4. Type "rails -v" to make sure.
-2. From this project directory, do "bundle install --without production"
-3. To start the server "rails server".
-4. Navigate your browser to localhost:3000.
+Most of it is standard from the course.
 
+I've added to it the ability to create categories only when you become a moderator.
 
-== Setting up with Git
-
-1. Instantiate this directory as a git repository with "git init".
-2. Go to github.com, create a new repository, then follow instructions on how to add a remote repository that links to github.
-3. Remember, you have to "git add" changes to ready it for a commit, then "git commit" to commit those changes locally, then "git push origin master" to push it to the remote "origin" repository, which is the previously created github.com repository.
 
 == Deploying to Heroku
 
