@@ -4,6 +4,17 @@
   <%= render 'post', post: post %>
 <% end %>
 
+<div class='center-block'>
+  <h5 class='center-block'>
+  <% @pages.times do |n| %>
+    <% if (params[:offset].nil? && n == 0) || (params[:offset].to_s == (n * Post::PER_PAGE).to_s) %>
+      <%= "Page #{n+1}" %>
+    <% else %>
+      <%= link_to "Page #{n+1}", posts_path(offset: (n * Post::PER_PAGE)) %>
+    <% end %>
+  <% end %>
+  </h5>
+</div>
 
 
 
