@@ -13,7 +13,8 @@ class User <ActiveRecord::Base
   slugable_column :username
 
   def two_factor_auth?
-    !self.phone.blank?
+    #!self.phone.blank?
+    false
   end
 
   def generate_pin!
